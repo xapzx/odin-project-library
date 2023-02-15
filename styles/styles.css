@@ -16,7 +16,8 @@ header {
     position: relative;
     z-index: 1;
     grid-row: 1;
-    box-shadow: 0 5px 5px 0px #f43f5e;
+    -webkit-box-shadow: 5px 0 10px 1px #aaaaaa;
+    box-shadow: 5px 0 10px 1px #aaaaaa;
     width: 200px;
     text-align: center;
 }
@@ -48,6 +49,8 @@ footer {
     padding: 24px 24px;
     height: 200px;
     width: 250px;
+    -webkit-box-shadow: 6px 3px 15px 1px #aaaaaa;
+    box-shadow: 6px 3px 15px 1px #aaaaaa;
 }
 
 .card p {
