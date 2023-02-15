@@ -30,9 +30,32 @@ function displayBooks() {
     const newDiv = document.createElement('div');
     newDiv.classList.add('card');
 
+    let book_info;
     for(const property in book) {
-      const book_info = document.createElement('p');
-      book_info.innerText = book_properties[count] + ": " + book[property];
+      if(property === "read") {
+        // Create the toggle slider for read book property
+        book_info = document.createElement('div');
+        book_info.classList.add('toggle')
+        const text = document.createElement('p');
+        text.innerText = book_properties[count] + ": ";
+        book_info.appendChild(text);
+
+        const label = document.createElement('label');
+        label.classList.add('switch');
+
+        const input = document.createElement('input');
+        input.setAttribute('type', 'checkbox');
+        label.appendChild(input);
+
+        const slider = document.createElement('span');
+        slider.classList.add('slider', 'round');
+        label.appendChild(slider);
+        book_info.appendChild(label);
+      } else {
+        book_info = document.createElement('p');
+        book_info.innerText = book_properties[count] + ": " + book[property];
+      }
+
       newDiv.appendChild(book_info);
       count++;
     }

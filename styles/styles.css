@@ -58,3 +58,13 @@ footer {
     color: #C7395F;
     font-weight: bold;
 }
+
+.toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle > p {
+    margin: 0;
+}
