@@ -1,6 +1,7 @@
 const book_section = document.querySelector('#book-section');
 const submit = document.querySelector('#form-submit-btn');
 let library = [];
+const book_properties = ['Title', 'Author', 'Pages', 'Read'];
 
 // Book Constructor
 function Book(title, author, pages, read) {
@@ -24,16 +25,19 @@ function addBookToLibrary() {
 function displayBooks() {
   book_section.innerHTML = "";
 
+  let count = 0;
   for(const book of library) {
     const newDiv = document.createElement('div');
     newDiv.classList.add('card');
 
     for(const property in book) {
       const book_info = document.createElement('p');
-      book_info.innerText = book[property];
+      book_info.innerText = book_properties[count] + ": " + book[property];
       newDiv.appendChild(book_info);
+      count++;
     }
     book_section.appendChild(newDiv);
+    count = 0;
   }
 }
 
