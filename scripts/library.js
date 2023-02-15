@@ -11,6 +11,10 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
+Book.prototype.toggleRead = function () {
+  this.read = !this.read;
+}
+
 // Adds a new book to the library
 function addBookToLibrary() {
   const title = document.querySelector('#title-form').value;
@@ -24,14 +28,17 @@ function addBookToLibrary() {
 // Displays each book in the library on its own card
 function displayBooks() {
   book_section.innerHTML = "";
-
-  let count = 0;
+  let data_attribute = 0;
   for(const book of library) {
+    let count = 0;
     const newDiv = document.createElement('div');
     newDiv.classList.add('card');
-
+    
     let book_info;
     for(const property in book) {
+      // Skip function properties
+      if(typeof book[property] == 'function') continue;
+
       if(property === "read") {
         // Create the toggle slider for read book property
         book_info = document.createElement('div');
@@ -45,6 +52,9 @@ function displayBooks() {
 
         const input = document.createElement('input');
         input.setAttribute('type', 'checkbox');
+        input.addEventListener('click', () => {
+          book.toggleRead();
+        });
         label.appendChild(input);
 
         const slider = document.createElement('span');
@@ -59,11 +69,38 @@ function displayBooks() {
       newDiv.appendChild(book_info);
       count++;
     }
+
+    // Create a delete button
+    let remove_container = createDeleteButton(data_attribute++);
+    newDiv.appendChild(remove_container);
     book_section.appendChild(newDiv);
     count = 0;
   }
 }
 
+// Create a delete button for book cards
+function createDeleteButton(data_attribute) {
+  const remove_container = document.createElement('div');
+  remove_container.classList.add('delete-book-container');
+  const remove = document.createElement('button');
+  remove.setAttribute('data-index', `${data_attribute}`);
+  remove.classList.add('delete-book-btn');
+  remove.innerText = "Delete";
+  remove.addEventListener('click', (event) => {
+    removeBook(event);
+    displayBooks();
+  });
+  remove_container.appendChild(remove);
+
+  return remove_container;
+}
+
+// Remove a book from the library
+function removeBook(event) {
+  library.splice(event.target.dataset.index, 1);
+}
+
+// Form display control
 function openForm() {
   document.getElementById("myForm").style.display = "block";
 }
