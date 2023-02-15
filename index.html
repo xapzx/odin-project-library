@@ -14,43 +14,40 @@
         <header>
             <h1>Library</h1>
         </header>
-        <div id="book-section">
-            
-        </div>
+        <div id="book-section"></div>
         <button class="open-button" onclick="openForm()">Open Form</button>
-        <footer>Odin Project 2023</footer>
-    </div>
-    <div class="form-popup" id="myForm">
-        <form action="/action_page.php" class="form-container">
-            <h1>Add New Book</h1>
-        
-            <label for="title"><b>Title</b></label>
-            <input id="title-form" type="text" placeholder="Title" name="title" required>
-        
-            <label for="author"><b>Author</b></label>
-            <input id="author-form" type="text" placeholder="Author" name="author" required>
+        <div class="form-popup" id="myForm">
+            <form action="/action_page.php" class="form-container">
+                <h1>Add New Book</h1>
             
-            <label for="pages"><b>Pages</b></label>
-            <input id="pages-form" type="text" placeholder="Pages" name="pages" required>
+                <label for="title"><b>Title</b></label>
+                <input id="title-form" type="text" placeholder="Title" name="title" required>
             
-            <fieldset>
-                <legend><b>Have you read the book?</b></legend>
-            
-                <div>
-                  <input type="radio" id="read-yes" name="read" value="true"
-                         checked required>
-                  <label for="read-yes">Yes</label>
-                </div>
-            
-                <div>
-                  <input type="radio" id="read-no" name="read" value="false">
-                  <label for="read-no">No</label>
-                </div>
-            </fieldset>
-
-            <button id="form-submit-btn" type="submit" class="btn">Add</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-        </form>
+                <label for="author"><b>Author</b></label>
+                <input id="author-form" type="text" placeholder="Author" name="author" required>
+                
+                <label for="pages"><b>Pages</b></label>
+                <input id="pages-form" type="text" placeholder="Pages" name="pages" required>
+                
+                <fieldset>
+                    <legend><b>Have you read the book?</b></legend>
+                
+                    <div>
+                      <input type="radio" id="read-yes" name="read" value="true"
+                             checked required>
+                      <label for="read-yes">Yes</label>
+                    </div>
+                
+                    <div>
+                      <input type="radio" id="read-no" name="read" value="false">
+                      <label for="read-no">No</label>
+                    </div>
+                </fieldset>
+    
+                <button id="form-submit-btn" type="submit" class="btn">Add</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

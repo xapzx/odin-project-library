@@ -4,12 +4,12 @@ body {
 
 .container {
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto 1fr;
     height: 100vh;
 }
 
 header, footer {
-    background-color: #831843;
+    background-color: #C7395F;
 }
 
 header {
@@ -17,6 +17,12 @@ header {
     z-index: 1;
     grid-row: 1;
     box-shadow: 0 5px 5px 0px #f43f5e;
+    width: 200px;
+}
+
+header > h1 {
+    color: #E8BA40;
+    text-align: center;
 }
 
 footer {
@@ -26,7 +32,7 @@ footer {
 }
 
 #book-section {
-    background-color: #fda4af;
+    background-color: #DED4E8;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     grid-auto-rows: 200px;
@@ -36,10 +42,15 @@ footer {
 }
 
 .card {
-    border: 1px solid lightcoral;
-    padding: 32px 32px;
+    background-color: #E8BA40;
+    border: 1px solid #E8BA40;
+    padding: 24px 24px;
+    height: 200px;
+    width: 250px;
 }
 
 .card p {
     margin-top: 0;
+    color: #C7395F;
+    font-weight: bold;
 }

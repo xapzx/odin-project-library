@@ -62,9 +62,9 @@ submit.addEventListener('click', (event) => {
 
 // Dummy data
 const book1 = new Book('The Hobbit', 'J.R.R. Toljien', 295, true);
-const book2 = new Book('The Hobbit1', 'J.R.R. Toljien1', 296, false);
-const book3 = new Book('The Hobbit2', 'J.R.R. Toljien2', 297, true);
-const book4 = new Book('The Hobbit3', 'J.R.R. Toljien3', 298, false);
+const book2 = new Book('Harry Potter and the Order of the Phoenix', 'J.K. Rowling', 576, false);
+const book3 = new Book('The 13-Storey Treehouse', 'Andy Griffiths', 212, true);
+const book4 = new Book('The Secret Garden', 'Frances Hodgeson Burnett', 212, false);
 library.push(book1);
 library.push(book2);
 library.push(book3);
