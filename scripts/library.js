@@ -52,9 +52,11 @@ function displayBooks() {
 
         const input = document.createElement('input');
         input.setAttribute('type', 'checkbox');
-        input.addEventListener('click', () => {
-          book.toggleRead();
-        });
+
+        input.addEventListener('click', book.toggleRead.bind(book));
+        // input.addEventListener('click', () => {
+          // book.toggleRead();
+        // });
         label.appendChild(input);
 
         const slider = document.createElement('span');
