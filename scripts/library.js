@@ -21,7 +21,7 @@ function addBookToLibrary() {
   const author = document.querySelector('#author-form').value;
   const pages = document.querySelector('#pages-form').value;
   const read = document.querySelector('input[name="read"]:checked').value;
-  const book = new Book(title, author, pages, read);
+  const book = new Book(title, author, pages, (read === 'true'));
   library.push(book);
 }
 
@@ -52,11 +52,11 @@ function displayBooks() {
 
         const input = document.createElement('input');
         input.setAttribute('type', 'checkbox');
-
         input.addEventListener('click', book.toggleRead.bind(book));
         // input.addEventListener('click', () => {
           // book.toggleRead();
         // });
+        input.checked = (book[property]) ? 1 : 0;
         label.appendChild(input);
 
         const slider = document.createElement('span');
