@@ -1,35 +1,51 @@
 const book_section = document.querySelector('#book-section');
 const submit = document.querySelector('#form-submit-btn');
-let library = [];
 const book_properties = ['Title', 'Author', 'Pages', 'Read'];
 
-// Book Constructor
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+// Book Class
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+
+  toggleRead() {
+    this.read = !this.read;
+  }
 }
 
-Book.prototype.toggleRead = function () {
-  this.read = !this.read;
+// Library Class
+class Library {
+  constructor() {
+    this.library = [];
+  }
+
+  addBookToLibrary(book) {
+    if(!this.haveBook(book)) {
+      this.library.push(book);
+    }
+  }
+
+  removeBook(event) {
+    this.library.splice(event.target.dataset.index, 1);
+  }
+
+  haveBook(newBook) {
+    const contains = (book) => book.title.toLowerCase() === newBook.title.toLowerCase();
+    return this.library.some(contains);
+  }
 }
 
-// Adds a new book to the library
-function addBookToLibrary() {
-  const title = document.querySelector('#title-form').value;
-  const author = document.querySelector('#author-form').value;
-  const pages = document.querySelector('#pages-form').value;
-  const read = document.querySelector('input[name="read"]:checked').value;
-  const book = new Book(title, author, pages, (read === 'true'));
-  library.push(book);
-}
+// Create a library object instance
+const library = new Library();
 
 // Displays each book in the library on its own card
 function displayBooks() {
   book_section.innerHTML = "";
   let data_attribute = 0;
-  for(const book of library) {
+  for(const book of library.library) {
     let count = 0;
     const newDiv = document.createElement('div');
     newDiv.classList.add('card');
@@ -53,9 +69,6 @@ function displayBooks() {
         const input = document.createElement('input');
         input.setAttribute('type', 'checkbox');
         input.addEventListener('click', book.toggleRead.bind(book));
-        // input.addEventListener('click', () => {
-          // book.toggleRead();
-        // });
         input.checked = (book[property]) ? 1 : 0;
         label.appendChild(input);
 
@@ -89,17 +102,12 @@ function createDeleteButton(data_attribute) {
   remove.classList.add('delete-book-btn');
   remove.innerText = "Delete";
   remove.addEventListener('click', (event) => {
-    removeBook(event);
+    library.removeBook(event);
     displayBooks();
   });
   remove_container.appendChild(remove);
 
   return remove_container;
-}
-
-// Remove a book from the library
-function removeBook(event) {
-  library.splice(event.target.dataset.index, 1);
 }
 
 // Form display control
@@ -117,8 +125,13 @@ window.addEventListener('load', displayBooks);
 // Prevent the default behaviour of form submission to server
 // Clicking button adds new book to library then updates display of books
 submit.addEventListener('click', (event) => {
+  const title = document.querySelector('#title-form').value;
+  const author = document.querySelector('#author-form').value;
+  const pages = document.querySelector('#pages-form').value;
+  const read = document.querySelector('input[name="read"]:checked').value;
+  const book = new Book(title, author, pages, (read === 'true'));
   event.preventDefault();
-  addBookToLibrary();
+  library.addBookToLibrary(book);
   displayBooks();
 });
 
@@ -127,7 +140,7 @@ const book1 = new Book('The Hobbit', 'J.R.R. Toljien', 295, true);
 const book2 = new Book('Harry Potter and the Order of the Phoenix', 'J.K. Rowling', 576, false);
 const book3 = new Book('The 13-Storey Treehouse', 'Andy Griffiths', 212, true);
 const book4 = new Book('The Secret Garden', 'Frances Hodgeson Burnett', 212, false);
-library.push(book1);
-library.push(book2);
-library.push(book3);
-library.push(book4);
+library.addBookToLibrary(book1);
+library.addBookToLibrary(book2);
+library.addBookToLibrary(book3);
+library.addBookToLibrary(book4);
